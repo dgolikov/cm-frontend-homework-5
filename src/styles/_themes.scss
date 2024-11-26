@@ -1,0 +1,21 @@
+@use "sass:map";
+@use 'sass:list';
+
+$theme-colors-map: (
+    "on-surface": (light: #1D1B20, dark: #E6E0E9),
+    "on-surface-variant": (light: #49454F, dark: #CAC4D0),
+    "surface-container-low": (light: #F7F2FA, dark: #1D1B20),
+    "secondary-container": (light: #E8DEF8, dark: #4A4458),
+    "on-secondary-container": (light: #4A4458, dark: #E8DEF8)
+);
+
+:root {
+    color-scheme: light dark;
+
+    @each $name, $color in $theme-colors-map {
+        --md-sys-color-#{$name}: light-dark(
+            #{map.get($color, light)},
+            #{map.get($color, dark)}
+        );
+    }
+}

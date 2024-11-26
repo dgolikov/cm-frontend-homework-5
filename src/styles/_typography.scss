@@ -1,0 +1,35 @@
+@use "sass:map";
+
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap');
+
+$typography-map: (
+    "title-small": (
+        "weight": 500,
+        "size": 14px,
+        "traking": 0.1px,
+        "line-height": 20px,
+    ),
+    "label-large": (
+        "weight": 500,
+        "size": 14px,
+        "traking": 0.1px,
+        "line-height": 20px,
+    ),
+);
+
+@mixin _private-apply-font($font-style) {
+    $font-map: map.get($typography-map, $font-style);
+
+    font-weight: map.get($font-map, "weight");
+    font-size: map.get($font-map, "size");
+    letter-spacing: map.get($font-map, "traking");
+    line-height: map.get($font-map, "line-height");
+}
+
+@mixin typography-title-small {
+    @include _private-apply-font("title-small");
+}
+
+@mixin typography-label-large {
+    @include _private-apply-font("label-large");
+}
